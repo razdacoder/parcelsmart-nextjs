@@ -1,7 +1,9 @@
+"use client";
+
 import { client } from "@/lib/client";
 import { useMutation } from "@tanstack/react-query";
 import type { AxiosError } from "axios";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 import { toast } from "sonner";
 
@@ -13,7 +15,7 @@ type RequestType = {
 };
 
 export default function useResetPassword() {
-  const navigate = useNavigate();
+  const router = useRouter();
   return useMutation<
     {
       status: boolean;
@@ -28,7 +30,7 @@ export default function useResetPassword() {
     },
     onSuccess: (data) => {
       toast.success(data.message);
-      navigate("/auth/login");
+      router.push("/auth/login");
     },
     onError: (error) => {
       console.log(error);

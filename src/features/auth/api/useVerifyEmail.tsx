@@ -1,12 +1,12 @@
-import { useAuth } from "@/components/auth-provider";
+import { useAuth } from "@/components/providers/auth-provider";
 import { client } from "@/lib/client";
 import { useMutation } from "@tanstack/react-query";
 import type { AxiosError } from "axios";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 export default function useVerifyEmail() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { login } = useAuth();
   return useMutation<
     AuthSuccessType,
@@ -23,7 +23,7 @@ export default function useVerifyEmail() {
         token: data.data.access_token,
         expires_at: data.data.expires_at,
       });
-      navigate("/");
+      router.push("/");
     },
     onError: (error) => {
       console.log(error);

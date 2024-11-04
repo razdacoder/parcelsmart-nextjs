@@ -1,13 +1,15 @@
+"use client";
+
 import { client } from "@/lib/client";
 import { ResetPasswordValues } from "@/lib/schemas";
 import { useMutation } from "@tanstack/react-query";
 import type { AxiosError } from "axios";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 import { toast } from "sonner";
 
 export default function useForgotPassword() {
-  const navigate = useNavigate();
+  const router = useRouter();
   return useMutation<
     {
       status: boolean;
@@ -20,11 +22,9 @@ export default function useForgotPassword() {
       const response = await client.post("/auth/password/forgot", data);
       return response.data;
     },
-    onSuccess: (data, variables) => {
+    onSuccess: (data) => {
       toast.success(data.message);
-      navigate("/auth/reset-password-confirm", {
-        state: { email: variables.email },
-      });
+      router.push("/auth/reset-password-confirm");
     },
     onError: (error) => {
       console.log(error);
