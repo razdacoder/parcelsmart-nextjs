@@ -7,9 +7,11 @@ import type { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 
 import { toast } from "sonner";
+import { useRouteEmail } from "../hooks/use-route-email";
 
 export default function useForgotPassword() {
   const router = useRouter();
+  const { setEmail } = useRouteEmail();
   return useMutation<
     {
       status: boolean;
@@ -22,8 +24,9 @@ export default function useForgotPassword() {
       const response = await client.post("/auth/password/forgot", data);
       return response.data;
     },
-    onSuccess: (data) => {
+    onSuccess: (data, variables) => {
       toast.success(data.message);
+      setEmail(variables.email);
       router.push("/auth/reset-password-confirm");
     },
     onError: (error) => {

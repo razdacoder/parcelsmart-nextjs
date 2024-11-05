@@ -6,6 +6,7 @@ import type { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 
 import { toast } from "sonner";
+import { useRouteEmail } from "../hooks/use-route-email";
 
 type RequestType = {
   email: string;
@@ -16,6 +17,7 @@ type RequestType = {
 
 export default function useResetPassword() {
   const router = useRouter();
+  const { setEmail } = useRouteEmail();
   return useMutation<
     {
       status: boolean;
@@ -30,6 +32,7 @@ export default function useResetPassword() {
     },
     onSuccess: (data) => {
       toast.success(data.message);
+      setEmail();
       router.push("/auth/login");
     },
     onError: (error) => {

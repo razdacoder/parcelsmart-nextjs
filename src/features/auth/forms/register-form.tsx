@@ -40,8 +40,6 @@ export default function RegisterForm() {
       phone_number: "",
       email: "",
       password: "",
-      confirm_password: "",
-      username: "",
       acceptTerms: false,
     },
   });
@@ -56,11 +54,10 @@ export default function RegisterForm() {
     const data: RegisterUserData = {
       first_name: values.first_name,
       last_name: values.last_name,
-      username: values.username,
       email: values.email,
       phone_number: values.phone_number,
       password: values.password,
-      confirm_password: values.confirm_password,
+      confirm_password: values.password,
       account_type: "personal",
     };
     mutate(data, {

@@ -1,7 +1,10 @@
+"use client";
 import OTPVerificationForm from "@/features/auth/forms/otp-verification-form";
+import { useRouteEmail } from "@/features/auth/hooks/use-route-email";
 import Image from "next/image";
 
 export default function VerificationPage() {
+  const { email } = useRouteEmail();
   return (
     <main className="bg-[#F8FAFC] min-h-screen flex flex-col py-10 md:px-24">
       <div className="hidden lg:flex justify-center lg:justify-start items-center">
@@ -27,7 +30,7 @@ export default function VerificationPage() {
               OTP Verification
             </h3>
             <p className="text-muted-foreground text-sm text-center">
-              Enter the OTP sent to your email // TODO;
+              Enter the OTP sent to your email {email};
             </p>
           </div>
           <OTPVerificationForm />

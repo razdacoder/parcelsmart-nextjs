@@ -4,10 +4,12 @@ import { useMutation } from "@tanstack/react-query";
 import type { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { useRouteEmail } from "../hooks/use-route-email";
 
 export default function useVerifyEmail() {
   const router = useRouter();
   const { login } = useAuth();
+  const { setEmail } = useRouteEmail();
   return useMutation<
     AuthSuccessType,
     AxiosError<ErrorResponseType>,
@@ -23,6 +25,7 @@ export default function useVerifyEmail() {
         token: data.data.access_token,
         expires_at: data.data.expires_at,
       });
+      setEmail();
       router.push("/");
     },
     onError: (error) => {

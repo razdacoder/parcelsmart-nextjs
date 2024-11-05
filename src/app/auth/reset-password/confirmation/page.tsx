@@ -1,8 +1,20 @@
+"use client";
 import NewPasswordForm from "@/features/auth/forms/new-password-form";
+import { useRouteEmail } from "@/features/auth/hooks/use-route-email";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function NewPassword() {
+  const { email } = useRouteEmail();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!email) {
+      return router.push("/auth/login");
+    }
+  }, [email, router]);
   return (
     <main className="bg-[#F8FAFC] min-h-screen flex flex-col py-10 md:px-24">
       <div className="hidden lg:flex justify-center lg:justify-start items-center">

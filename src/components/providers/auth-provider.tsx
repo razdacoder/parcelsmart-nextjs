@@ -1,4 +1,5 @@
 "use client";
+
 import useRefreshToken from "@/features/auth/api/useRefreshToken";
 import { client } from "@/lib/client";
 import { AxiosError, InternalAxiosRequestConfig } from "axios";
@@ -43,7 +44,7 @@ interface AuthProviderProps {
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [authToken, setAuthToken] = useState<TokenType | null>(() => {
-    const tokenString = localStorage.getItem("authToken");
+    const tokenString = window.localStorage.getItem("authToken");
     if (tokenString) {
       try {
         const token = JSON.parse(tokenString) as TokenType;

@@ -18,9 +18,11 @@ import { newPasswordSchema, NewPasswordValues } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import useResetPassword from "../api/useResetPassword";
+import { useRouteEmail } from "../hooks/use-route-email";
 
 export default function NewPasswordForm() {
   const { mutate, isPending } = useResetPassword();
+  const { email } = useRouteEmail();
   const form = useForm<NewPasswordValues>({
     resolver: zodResolver(newPasswordSchema),
     defaultValues: {
@@ -30,7 +32,7 @@ export default function NewPasswordForm() {
     },
   });
   function onSubmit(values: NewPasswordValues) {
-    mutate({ ...values, email: "ramonrash2@gmail.com" });
+    mutate({ ...values, email: email! });
   }
   return (
     <Form {...form}>

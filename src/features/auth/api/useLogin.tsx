@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import type { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { useRouteEmail } from "../hooks/use-route-email";
 import useResendEmailVerification from "./useResendEmailVerification";
 
 type LoginErrorType = {
@@ -18,6 +19,7 @@ type LoginErrorType = {
 export default function useLogin() {
   const router = useRouter();
   const { mutate } = useResendEmailVerification();
+  const { setEmail } = useRouteEmail();
   const { login } = useAuth();
   return useMutation<AuthSuccessType, AxiosError<LoginErrorType>, LoginValues>({
     mutationFn: async (data) => {
@@ -40,13 +42,8 @@ export default function useLogin() {
           { email: variables.email },
           {
             onSuccess: () => {
+              setEmail(variables.email);
               router.push("/auth/verify-email/verification");
-
-              // {
-              //   state: {
-              //     email: variables.email,
-              //   },
-              // }
             },
           }
         );

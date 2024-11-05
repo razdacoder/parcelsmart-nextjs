@@ -14,11 +14,22 @@ import {
 } from "@/components/ui/input-otp";
 import { otpSchema, OTPValues } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import useVerifyEmail from "../api/useVerifyEmail";
+import { useRouteEmail } from "../hooks/use-route-email";
 
 export default function OTPVerificationForm() {
   const { mutate, isPending } = useVerifyEmail();
+  const { email } = useRouteEmail();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!email) {
+      return router.replace("/auth/login");
+    }
+  }, [email, router]);
   const form = useForm<OTPValues>({
     resolver: zodResolver(otpSchema),
     defaultValues: {
@@ -27,7 +38,7 @@ export default function OTPVerificationForm() {
   });
 
   function onSubmit(values: OTPValues) {
-    mutate({ email: "ramonrash2@gmail.com", otp: values.pin });
+    mutate({ email: email!, otp: values.pin });
   }
   return (
     <Form {...form}>

@@ -1,12 +1,21 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
+import ResendEmailButton from "@/features/auth/components/resend-email-button";
+import { useRouteEmail } from "@/features/auth/hooks/use-route-email";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function VerifyEmail() {
+  const { email } = useRouteEmail();
   const router = useRouter();
 
+  useEffect(() => {
+    if (!email) {
+      return router.replace("/auth/login");
+    }
+  }, [email, router]);
   return (
     <main className="bg-[#F8FAFC] min-h-screen flex flex-col py-10 md:px-24">
       <div className="hidden lg:flex justify-center lg:justify-start items-center">
@@ -44,24 +53,13 @@ export default function VerifyEmail() {
               verify your email
             </p>
           </div>
-          <Button
-            onClick={() => {
-              router.push("/auth/verify-email/verification");
-            }}
-            size="lg"
-            className="w-full"
-          >
-            Proceed
+          <Button asChild size="lg" className="w-full">
+            <Link href="/auth/verify-email/verification">Proceed</Link>
           </Button>
           <div className="flex justify-center mt-6">
             <p className="text-text text-sm text-center font-medium">
               Don&apos;t receive an email?&nbsp;
-              <Button
-                variant="link"
-                className="text-primary hover:no-underline p-0"
-              >
-                Resend
-              </Button>
+              <ResendEmailButton />
             </p>
           </div>
         </div>

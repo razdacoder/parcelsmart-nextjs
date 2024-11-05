@@ -65,7 +65,6 @@ type RegisterUserData = {
   last_name: string;
   password: string;
   phone_number: string;
-  username: string;
   confirm_password: string;
   account_type: string;
 };
