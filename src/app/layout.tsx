@@ -1,4 +1,5 @@
 import AuthProvider from "@/components/providers/auth-provider";
+import ModalProvider from "@/components/providers/modal-provider";
 import ReactQueryProvider from "@/components/providers/react-query-provider";
 import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
@@ -27,6 +28,7 @@ export default function RootLayout({
         <ReactQueryProvider>
           <AuthProvider>{children}</AuthProvider>
           <Toaster richColors position="top-right" />
+          <ModalProvider />
         </ReactQueryProvider>
       </body>
     </html>

@@ -1,3 +1,4 @@
+import AppLayout from "@/components/app-layout";
 import SessionProvider from "@/components/providers/session-provider";
 
 export default function DashboardLayout({
@@ -5,5 +6,9 @@ export default function DashboardLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <SessionProvider>{children}</SessionProvider>;
+  return (
+    <SessionProvider>
+      <AppLayout>{children}</AppLayout>
+    </SessionProvider>
+  );
 }
