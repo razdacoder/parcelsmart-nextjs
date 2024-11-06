@@ -7,6 +7,9 @@ import EditPackageModal from "@/features/settings/components/edit-package-modal"
 import NewPackageModal from "@/features/settings/components/new-package-modal";
 import UpdatePasswordModal from "@/features/settings/components/update-password-modal";
 import UpdateProfileModal from "@/features/settings/components/update-profile-modal";
+import DropOffModal from "@/features/shipments/components/drop-off-modal";
+import EditItemModal from "@/features/shipments/components/edit-item-modal";
+import NewItemModal from "@/features/shipments/components/new-item-modal";
 import ShipmentDetailModal from "@/features/shipments/components/shipment-detail";
 import TransactionDetailModal from "@/features/transactions/components/transaction-detail-modal";
 import { useMountedState } from "react-use";
@@ -28,13 +31,10 @@ export default function ModalProvider() {
       <AlertPopUp />
       <UpdateProfileModal />
       <UpdatePasswordModal />
-      {/* <NewItemModal />
+      <NewItemModal />
       <DropOffModal />
-      
-      
-   
-      
       <EditItemModal />
+      {/* 
       <TopUpModal />
      
        */}

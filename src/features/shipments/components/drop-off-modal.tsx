@@ -12,10 +12,10 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Loader, MapPin, X } from "lucide-react";
 import { useState } from "react";
 
+import { ScrollArea } from "@/components/ui/scroll-area";
+import useDropLocations from "../api/useDropLocations";
 import { useDropOff } from "../hooks/use-drop-off";
 import { useShipmentApplication } from "../hooks/use-shipment-application-store";
-import useDropLocations from "@/features/shipment/api/useDropLocations.tsx";
-import {ScrollArea} from "@/components/ui/scroll-area.tsx";
 
 export default function DropOffModal() {
   const { isOpen, onClose, required, carrier } = useDropOff();
@@ -36,16 +36,19 @@ export default function DropOffModal() {
     } else {
       if (dropLocation) {
         setDropOffId(dropLocation);
-        onClose()
+        onClose();
       }
     }
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={() => {
-      setDropOff("no")
-      onClose()
-    }}>
+    <Dialog
+      open={isOpen}
+      onOpenChange={() => {
+        setDropOff("no");
+        onClose();
+      }}
+    >
       <DialogOverlay className="bg-black/80" />
       <DialogContent className=" w-11/12 md:max-w-xl p-0 rounded-lg">
         <DialogClose className="absolute -top-12 z-50 right-0 size-10 rounded-full bg-white flex justify-center items-center">
@@ -108,7 +111,10 @@ export default function DropOffModal() {
               <ScrollArea className="space-y-2 p-4 h-[300px]">
                 {data &&
                   data.data.map((location) => (
-                    <div className="flex items-center space-x-2 mb-2 w-full border-2 px-2 py-4 rounded-lg has-[:checked]:border-primary">
+                    <div
+                      key={location.id}
+                      className="flex items-center space-x-2 mb-2 w-full border-2 px-2 py-4 rounded-lg has-[:checked]:border-primary"
+                    >
                       <div className="flex items-center justify-between w-full px-2">
                         <input
                           type="radio"

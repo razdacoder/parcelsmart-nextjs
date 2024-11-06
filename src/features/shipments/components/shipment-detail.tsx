@@ -271,7 +271,7 @@ export default function ShipmentDetailModal() {
                   className="gap-2"
                   onClick={() => {
                     onClose();
-                    router.push(`/shipment/book?shipment_id=${data.data.id}`);
+                    router.push(`/shipments/book?shipment_id=${data.data.id}`);
                   }}
                 >
                   Resume Shipment Booking <ArrowRight className="size-4" />

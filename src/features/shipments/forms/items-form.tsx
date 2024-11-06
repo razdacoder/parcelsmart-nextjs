@@ -319,8 +319,9 @@ export default function ItemsForm({
     ) {
       alertOpen({
         type: "warning",
-        title: "",
-        message: "",
+        title: "Upload Missing Documents.",
+        message:
+          "Provide proof of purchase for your shipment. Upload a valid payment receipt or a transaction receipt.",
         primaryLabel: "Upload",
         secondaryLabel: "Skip",
         primaryFn: () => {
@@ -332,6 +333,7 @@ export default function ItemsForm({
           } else {
             await createParcelsAndShipment();
           }
+          alertClose();
         },
       });
     } else {
