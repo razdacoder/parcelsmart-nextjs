@@ -102,7 +102,7 @@ export default function ItemsForm({
 
         const items: ItemValues[] = parcel.items.map((item) => {
           const itemValue: ItemValues =
-            item.hs_code === process.env.NEXT_PUBLIC_DOCUMENT_HSCODE
+            item.hs_code === process.env.NEXT_PUBLIC_DOCUMENT_HSCODE!
               ? {
                   itemType: "documents",
                   name: item.name,

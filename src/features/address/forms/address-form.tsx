@@ -141,7 +141,7 @@ export default function AddressForm({ address }: AddressFormProps) {
 
           <Autocomplete
             className="flex h-10 ps-10 bg-[#F4FDF8] w-full rounded-md border border-input px-4 py-2 text-sm shadow-sm transition-colors  placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-50"
-            apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY}
+            apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY!}
             onPlaceSelected={(place) => handlePlaceSelected(place)}
             placeholder="Search your address on Google (optional)"
             options={{

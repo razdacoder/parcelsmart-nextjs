@@ -9,7 +9,6 @@ import { useRouteEmail } from "../hooks/use-route-email";
 export default function useRegister() {
   const router = useRouter();
   const { setEmail } = useRouteEmail();
-  //   const navigate = useNavigate();
   return useMutation<RegisterSuccessType, AxiosError, RegisterUserData>({
     mutationFn: async (userData) => {
       const response = await client.post("/auth/register", userData);
