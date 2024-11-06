@@ -1,3 +1,5 @@
+"use client";
+
 import Paginator from "@/components/paginator";
 import TableLoader from "@/components/table-loader";
 import { Button } from "@/components/ui/button";
@@ -7,12 +9,15 @@ import { columns } from "@/features/address/columns";
 import { DataTable } from "@/features/address/components/data-table";
 import { useNewAddress } from "@/features/address/hooks/use-new-address";
 import { Plus } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+
 import { useDebounce } from "react-use";
 export default function AddressList() {
   const { onOpen } = useNewAddress();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
   const currentPage = parseInt(searchParams.get("page") || "1", 10);
   const search = searchParams.get("search");
 
@@ -22,15 +27,13 @@ export default function AddressList() {
   useDebounce(
     () => {
       setDebouncedValue(searchInput);
+      const newSearchParams = new URLSearchParams(searchParams.toString());
       if (searchInput) {
-        const newSearchParams = new URLSearchParams(searchParams.toString());
         newSearchParams.set("search", debouncedValue); // Add/update 'search' param
-        setSearchParams(newSearchParams);
       } else {
-        const newSearchParams = new URLSearchParams(searchParams.toString());
         newSearchParams.delete("search"); // Remove 'search' param if empty
-        setSearchParams(newSearchParams);
       }
+      router.push(`${pathname}?${newSearchParams.toString()}`);
     },
     1500,
     [searchInput]
@@ -57,7 +60,7 @@ export default function AddressList() {
               setSearchInput(currentTarget.value);
             }}
             placeholder="Search..."
-            className="py-2 h-11 w-full lg:w-56"
+            className="py-2 h-9 w-full lg:w-56"
           />
         </div>
       </div>

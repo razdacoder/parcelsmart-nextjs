@@ -135,13 +135,13 @@ export default function AddressForm({ address }: AddressFormProps) {
   return (
     <div className="space-y-6 mt-6">
       <div className="space-y-1">
-        <Label htmlFor="addresss">Address</Label>
+        <Label htmlFor="addresses">Address</Label>
         <div className="relative">
           <Search className="size-4 absolute left-3 top-1/2 -translate-y-1/2 transform text-muted-foreground z-10" />
 
           <Autocomplete
             className="flex h-10 ps-10 bg-[#F4FDF8] w-full rounded-md border border-input px-4 py-2 text-sm shadow-sm transition-colors  placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-50"
-            apiKey={import.meta.env.VITE_GOOGLE_PLACES_API_KEY}
+            apiKey={process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY}
             onPlaceSelected={(place) => handlePlaceSelected(place)}
             placeholder="Search your address on Google (optional)"
             options={{

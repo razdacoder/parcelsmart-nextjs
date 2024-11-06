@@ -1,4 +1,5 @@
-import { useAlertModal } from "@/components/alert-modal";
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -8,10 +9,10 @@ import {
   DialogOverlay,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useShipmentApplication } from "@/features/shipment/hooks/use-shipment-application-store";
+import { useShipmentApplication } from "@/features/shipments/hooks/use-shipment-application-store";
 import { format } from "date-fns";
 import { ArrowRight, Edit, Loader2, Trash2, XCircle } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import useAddress from "../api/useAddress";
 import useDeleteAddress from "../api/useDeleteAddress";
 import { useAddressDetailModal } from "../hooks/use-address-detail";
@@ -22,19 +23,11 @@ export default function AddressDetailModal() {
   const { data, isLoading, isError } = useAddress({ id });
   const { mutate: deleteAddress, isPending } = useDeleteAddress();
   const { setSenderValues } = useShipmentApplication();
-  const navigate = useNavigate();
+  const router = useRouter();
   const { onOpen } = useEditAddress();
-  const [AlertModal, confirm] = useAlertModal({
-    type: "warning",
-    title: "Are you sure?",
-    message: "This action will delete this address permanently.",
-    primaryLabel: "Continue",
-    secondaryLabel: "Cancel",
-  });
 
   return (
     <>
-      <AlertModal />
       <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogOverlay className="bg-black/80" />
         <DialogContent className="max-w-3xl">
@@ -57,7 +50,7 @@ export default function AddressDetailModal() {
           {isError && (
             <div className="flex justify-center items-center h-full">
               <p className="text-sm text-destructive">
-                Fialed to fetch address detail
+                Failed to fetch address detail
               </p>
             </div>
           )}
@@ -128,7 +121,7 @@ export default function AddressDetailModal() {
                     onClick={() => {
                       onClose();
                       setSenderValues(data.data);
-                      navigate(`/shipment/new`);
+                      router.push(`/shipment/book`);
                     }}
                     className="gap-2 items-center"
                   >
