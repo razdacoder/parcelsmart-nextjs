@@ -1,6 +1,7 @@
 "use client";
 
 import ShipmentDetailModal from "@/features/shipments/components/shipment-detail";
+import TransactionDetailModal from "@/features/transactions/components/transaction-detail-modal";
 import { useMountedState } from "react-use";
 
 export default function ModalProvider() {
@@ -10,9 +11,10 @@ export default function ModalProvider() {
   return (
     <>
       <ShipmentDetailModal />
+      <TransactionDetailModal />
       {/* <NewItemModal />
       <DropOffModal />
-      <TransactionDetailModal />
+      
       <NewAddressModal />
       <AddressDetailModal />
       <UpdateProfileModal />
