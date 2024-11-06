@@ -32,6 +32,7 @@ export default function useLogin() {
         token: data.data.access_token,
         expires_at: data.data.expires_at,
       });
+      setEmail();
       router.push("/");
     },
     onError: (error, variables) => {
