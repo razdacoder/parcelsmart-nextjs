@@ -175,3 +175,43 @@ export const packagingSchema = z.object({
 });
 
 export type PackagingValues = z.infer<typeof packagingSchema>;
+
+export const requestQuoteSchema = z.object({
+  service_type: z.enum([
+    "express-logistics",
+    "last-mile-delivery",
+    "dangerous-goods-handling",
+    "sea-freight",
+    "air-freight",
+    "large-cargo-solutions",
+    "customs-clearing",
+    "aircraft-charters",
+    "trans-border-logistics",
+  ]),
+  shipment_details: z.object({
+    weight: z.coerce.number(),
+    dimensions: z.coerce.number(),
+    origin: z.object({
+      country: z.string({ message: "This field is required" }).trim(),
+      state: z.string({ message: "This field is required" }).trim(),
+      city: z.string({ message: "This field is required" }).trim(),
+    }),
+    destination: z.object({
+      country: z.string({ message: "This field is required" }).trim(),
+      state: z.string({ message: "This field is required" }).trim(),
+      city: z.string({ message: "This field is required" }).trim(),
+    }),
+  }),
+  contact_information: z.object({
+    name: z.string().trim(),
+    email: z.string().trim().email(),
+    phone_number: z
+      .string()
+      .trim()
+      .min(10, { message: "This field is required" }),
+    recieve_callback: z.coerce.boolean(),
+  }),
+});
+
+
+export type RequestQuoteValues = z.infer<typeof requestQuoteSchema>

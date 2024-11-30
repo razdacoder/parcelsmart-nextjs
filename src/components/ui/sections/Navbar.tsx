@@ -20,6 +20,13 @@ const servicesLinks = [
   },
 ];
 
+const shippingLinks = [
+  {
+    name: "Request a Quote",
+    href: "/request-quote",
+  },
+];
+
 export default function Navbar() {
   const pathname = usePathname();
   return (
@@ -67,8 +74,34 @@ export default function Navbar() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Shipping</NavigationMenuTrigger>
-                <NavigationMenuContent>Love</NavigationMenuContent>
+                <NavigationMenuTrigger
+                  className={cn(
+                    pathname.startsWith("/shipping") &&
+                      "text-primary hover:text-primary"
+                  )}
+                >
+                  Shipping
+                </NavigationMenuTrigger>
+                <NavigationMenuContent className="p-4 md:w-[500px] lg:w-[600px] space-y-2">
+                  <h5 className="font-medium text-secondary">
+                    Manage your shipment
+                  </h5>
+                  <div className="grid grid-cols-3">
+                    {shippingLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={`/services${link.href}`}
+                        className={cn(
+                          "text-secondary flex items-center gap-4 hover:text-primary",
+                          pathname === `/shipping${link.href}` &&
+                            "text-primary hover:text-primary"
+                        )}
+                      >
+                        <MoveRight className="size-4" /> {link.name}
+                      </Link>
+                    ))}
+                  </div>
+                </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Our Carriers</NavigationMenuTrigger>

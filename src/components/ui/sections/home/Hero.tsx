@@ -31,10 +31,10 @@ export default function Hero() {
             </h1>
             <div className="flex items-center gap-4">
               <Button asChild size="lg">
-                <Link href="#">Request a Quote</Link>
+                <Link href="/shipping/request-quote">Request a Quote</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
-                <Link href="#">Track Your Shipment</Link>
+                <Link href="/shipping/track-shipment">Track Your Shipment</Link>
               </Button>
             </div>
           </div>
