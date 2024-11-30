@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/ui/sections/Navbar";
-import Footer from "@/components/ui/sections/Footer";
+
 import ReactQueryProvider from "@/components/react-query-provider";
 
 // If loading a variable font, you don't need to specify the font weight
@@ -32,11 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <ReactQueryProvider>
-          <Navbar />
-          {children}
-          <Footer />
-        </ReactQueryProvider>
+        <ReactQueryProvider>{children}</ReactQueryProvider>
       </body>
     </html>
   );

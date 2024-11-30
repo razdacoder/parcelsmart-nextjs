@@ -34,6 +34,7 @@ export default function QuoteStepper() {
         {steps.map((step, index) => {
           const isActive = index === currentStep;
           const isDone = currentStep > index;
+          const isLastStep = index === steps.length - 1;
           return (
             <div
               key={`stepper-${index}`}
@@ -48,13 +49,15 @@ export default function QuoteStepper() {
                 {step}
               </span>
 
-              <div
-                className={cn(
-                  "hidden md:block flex-1 w-full h-2 bg-[#EFF0F6] rounded-lg before:transition before:duration-300 relative before:absolute before:block  before:top-0 before:left-0 before:h-full before:bg-primary before:w-0 before:rounded-lg",
-                  isActive && "before:w-1/2",
-                  isDone && "before:w-full"
-                )}
-              />
+              {!isLastStep && (
+                <div
+                  className={cn(
+                    "hidden md:block flex-1 w-full h-2 bg-[#EFF0F6] rounded-lg before:transition before:duration-300 relative before:absolute before:block before:top-0 before:left-0 before:h-full before:bg-primary before:w-0 before:rounded-lg",
+                    isActive && "before:w-1/2",
+                    isDone && "before:w-full"
+                  )}
+                />
+              )}
             </div>
           );
         })}

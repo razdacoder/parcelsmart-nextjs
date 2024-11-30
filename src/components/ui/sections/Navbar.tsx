@@ -18,12 +18,48 @@ const servicesLinks = [
     name: "Express Logistics",
     href: "/express-logistics",
   },
+  {
+    name: "Last Mile Delivery",
+    href: "/last-mile-delivery",
+  },
+  {
+    name: "Dangerous Goods Handling",
+    href: "/dangerous-goods-handling",
+  },
+  {
+    name: "Sea Freight",
+    href: "/sea-freight",
+  },
+  {
+    name: "Air Freight",
+    href: "/air-freight",
+  },
+  {
+    name: "Large Cargo Solutions",
+    href: "/large-cargo-solutions",
+  },
+  {
+    name: "Customs Clearing",
+    href: "/customs-clearing",
+  },
+  {
+    name: "Aircraft Charters",
+    href: "/aircraft-charters",
+  },
+  {
+    name: "Trans-Border Logistics",
+    href: "/trans-border-logistics",
+  },
 ];
 
 const shippingLinks = [
   {
     name: "Request a Quote",
     href: "/request-quote",
+  },
+  {
+    name: "Track your Shipment",
+    href: "/track-shipment",
   },
 ];
 
@@ -52,11 +88,11 @@ export default function Navbar() {
                 >
                   Services
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="p-4 md:w-[500px] lg:w-[600px] space-y-2">
+                <NavigationMenuContent className="p-4 md:w-[500px] lg:w-[800px] space-y-4">
                   <h5 className="font-medium text-secondary">
                     Services we offer
                   </h5>
-                  <div className="grid grid-cols-3">
+                  <div className="grid grid-cols-2 gap-4">
                     {servicesLinks.map((link) => (
                       <Link
                         key={link.href}
@@ -82,15 +118,15 @@ export default function Navbar() {
                 >
                   Shipping
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="p-4 md:w-[500px] lg:w-[600px] space-y-2">
+                <NavigationMenuContent className="p-4 md:w-[500px] lg:w-[800px] space-y-4">
                   <h5 className="font-medium text-secondary">
                     Manage your shipment
                   </h5>
-                  <div className="grid grid-cols-3">
+                  <div className="grid grid-cols-2 gap-4">
                     {shippingLinks.map((link) => (
                       <Link
                         key={link.href}
-                        href={`/services${link.href}`}
+                        href={`/shipping${link.href}`}
                         className={cn(
                           "text-secondary flex items-center gap-4 hover:text-primary",
                           pathname === `/shipping${link.href}` &&
