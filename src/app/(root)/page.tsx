@@ -6,6 +6,10 @@ import Partners from "@/components/ui/sections/home/Partners";
 import Services from "@/components/ui/sections/home/Services";
 import Testimonial from "@/components/ui/sections/home/Testimonial";
 
+export const metadata = {
+  title: { default: "Home" },
+};
+
 export default function Home() {
   return (
     <>

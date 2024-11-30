@@ -57,29 +57,32 @@ const contacts: ContactProps[] = [
   },
 ];
 
+export const metadata = {
+  title: { default: "Contact" },
+};
+
 export default function ContactPage() {
   return (
     <>
-    
-    <section className="py-24">
-      <div className="max-w-screen-xl mx-auto p-4">
-        <h2 className="text-[40px] leading-[40px] font-bold text-secondary text-center">
-          Love to hear from you. Get in touch
-        </h2>
-        <div className="mt-12 grid grid-cols-2 gap-y-6 gap-x-12">
-          {contacts.map((contact) => (
-            <ContactCard
-              key={contact.address}
-              heading={contact.heading}
-              address={contact.address}
-              image={contact.image}
-              alt={contact.alt}
-            />
-          ))}
+      <section className="py-24">
+        <div className="max-w-screen-xl mx-auto p-4">
+          <h2 className="text-[40px] leading-[40px] font-bold text-secondary text-center">
+            Love to hear from you. Get in touch
+          </h2>
+          <div className="mt-12 grid grid-cols-2 gap-y-6 gap-x-12">
+            {contacts.map((contact) => (
+              <ContactCard
+                key={contact.address}
+                heading={contact.heading}
+                address={contact.address}
+                image={contact.image}
+                alt={contact.alt}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-    <DownloadMobileApp/>
+      </section>
+      <DownloadMobileApp />
     </>
   );
 }

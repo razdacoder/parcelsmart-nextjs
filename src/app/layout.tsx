@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Parcelsmart",
+  title: { template: "%s - Parcels Mart ", default: "Parcels Mart" },
   description:
     "Fast, reliable express logistics services for small packages up to 3,000kg. Compare rates from top couriers, international, regional and domestic couriers.",
   keywords: [

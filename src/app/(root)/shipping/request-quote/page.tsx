@@ -2,6 +2,10 @@ import DownloadMobileApp from "@/components/ui/sections/DownloadMobileApp";
 import React from "react";
 import QuoteStepper from "./_components/stepper";
 
+export const metadata = {
+  title: { default: "Request Quote" },
+};
+
 export default function RequestQuotePage() {
   return (
     <>
