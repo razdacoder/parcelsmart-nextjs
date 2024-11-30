@@ -5,20 +5,30 @@ import CompareRateForm from "@/components/compare-rate-form";
 import { useEffect, useState } from "react";
 import { Loader } from "lucide-react";
 
-export default function CompareRate() {
+import patternBg from "@/app/assets/pattern-bg.png";
+
+export default function CompareRate({ text }: { text: string }) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
   return (
-    <section className=" bg-primary-light py-[100px]">
-      <div className="max-w-screen-2xl mx-auto p-4">
+    <section className="relative bg-primary-light py-[100px] mb-[100px]">
+      <Image
+        src={patternBg}
+        alt="Background"
+        layout="fill"
+        objectFit="cover"
+        objectPosition="center"
+        priority
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary-light/70 to-primary-light/70"></div>
+      <div className="relative z-10 max-w-screen-2xl mx-auto p-4">
         <div className="grid grid-cols-2 gap-8 auto-rows-min">
           <div className="flex flex-col max-w-2xl">
             <h3 className="text-[36px] leading-[43.2px] font-bold pr-20">
-              Easily compare rates from top-tier courier partners, including
-              regional and domestic courier partners
+              {text}
             </h3>
             <Image
               src={arrowImage}

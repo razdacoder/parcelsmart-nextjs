@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -8,8 +9,19 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Button } from "../button";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { MoveRight } from "lucide-react";
+
+const servicesLinks = [
+  {
+    name: "Express Logistics",
+    href: "/express-logistics",
+  },
+];
 
 export default function Navbar() {
+  const pathname = usePathname();
   return (
     <header className="drop-shadow-md bg-white sticky top-0 left-0 z-50">
       <div className="max-w-screen-2xl mx-auto p-4 flex items-center justify-between">
@@ -25,8 +37,34 @@ export default function Navbar() {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Services</NavigationMenuTrigger>
-                <NavigationMenuContent>Love</NavigationMenuContent>
+                <NavigationMenuTrigger
+                  className={cn(
+                    pathname.startsWith("/services") &&
+                      "text-primary hover:text-primary"
+                  )}
+                >
+                  Services
+                </NavigationMenuTrigger>
+                <NavigationMenuContent className="p-4 md:w-[500px] lg:w-[600px] space-y-2">
+                  <h5 className="font-medium text-secondary">
+                    Services we offer
+                  </h5>
+                  <div className="grid grid-cols-3">
+                    {servicesLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={`/services${link.href}`}
+                        className={cn(
+                          "text-secondary flex items-center gap-4 hover:text-primary",
+                          pathname === `/services${link.href}` &&
+                            "text-primary hover:text-primary"
+                        )}
+                      >
+                        <MoveRight className="size-4" /> {link.name}
+                      </Link>
+                    ))}
+                  </div>
+                </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Shipping</NavigationMenuTrigger>
@@ -42,8 +80,11 @@ export default function Navbar() {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link
-                  href="/"
-                  className="hover:text-primary text-sm font-medium transition-colors"
+                  href="/contact"
+                  className={cn(
+                    "hover:text-primary text-sm font-medium transition-colors",
+                    pathname === "/contact" && "text-primary hover:text-primary"
+                  )}
                 >
                   Contact
                 </Link>

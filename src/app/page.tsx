@@ -12,10 +12,13 @@ export default function Home() {
       <Hero />
       <Partners />
       <Services />
-      <CompareRate />
+      <CompareRate
+        text="Easily compare rates from top-tier courier partners, including
+              regional and domestic courier partners"
+      />
       <FAQ />
       <DownloadMobileApp />
-      <Testimonial/>
+      <Testimonial />
     </>
   );
 }
